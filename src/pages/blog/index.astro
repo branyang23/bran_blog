@@ -15,10 +15,29 @@ const posts = (await getCollection('blog')).sort(
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={`Writing | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 		<style>
 			main {
 				width: 960px;
+			}
+			.page-heading {
+				max-width: 720px;
+				margin: 0 auto 3rem;
+				text-align: center;
+			}
+			.page-heading > p:first-child {
+				margin: 0 0 0.75rem;
+				color: var(--accent-dark);
+				font-size: 0.8rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+			}
+			.page-heading h1 {
+				margin-bottom: 0.75rem;
+			}
+			.page-heading > p:last-child {
+				margin: 0;
 			}
 			ul {
 				display: flex;
@@ -89,6 +108,11 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
+			<header class="page-heading">
+				<p>Writing</p>
+				<h1>Notes from the work.</h1>
+				<p>Essays on software, AI, marketing, and the lessons of learning to build a business.</p>
+			</header>
 			<section>
 				<ul>
 					{
