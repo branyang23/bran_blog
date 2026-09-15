@@ -19,4 +19,7 @@ export default defineConfig({
 			subsets: ['latin'],
 		},
 	],
+	image: {
+		service: { entrypoint: './src/image-service.ts' },
+	},
 });
