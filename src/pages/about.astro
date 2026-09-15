@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import BranPortrait from '../assets/branyang.png';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
@@ -17,44 +19,60 @@ const description =
 		<Header />
 		<main>
 			<article>
-				<p class="eyebrow">About</p>
-				<h1>Hi, I’m Bran.</h1>
-				<p>
-					I use mathematics, software, and AI to solve practical problems—and I am learning what it
-					takes to build businesses of my own.
-				</p>
+				<section class="profile">
+					<div>
+						<p class="eyebrow">About</p>
+						<h1>Hi, I’m Bran.</h1>
+						<p>
+							I use mathematics, software, and AI to solve practical problems—and I am learning what
+							it takes to build businesses of my own.
+						</p>
+					</div>
+					<Image
+						class="portrait"
+						src={BranPortrait}
+						width={420}
+						height={560}
+						alt="Bran Yang holding a handwritten page of equations"
+						loading="eager"
+					/>
+				</section>
 
-				<p>
-					My career began with mathematical models: first using partial differential equations to
-					simulate biological processes in sewage treatment, and later forecasting supply and demand
-					for supermarkets and big online platforms(Alibaba).
-				</p>
+				<div class="bio">
+					<p>
+						My career began with mathematical models: first using partial differential equations to
+						simulate biological processes in sewage treatment, and later forecasting supply and
+						demand for supermarkets and big online platforms(Alibaba).
+					</p>
 
-				<p>
-					For the past three years, I have worked on AI-powered marketing solutions for clients
-					around the world. That work has helped businesses reduce campaign costs, reach more relevant
-					audiences, react faster to changing trends, and generate more sales and conversions.
-				</p>
+					<p>
+						For the past three years, I have worked on AI-powered marketing solutions for clients
+						around the world. That work has helped businesses reduce campaign costs, reach more
+						relevant audiences, react faster to changing trends, and generate more sales and
+						conversions.
+					</p>
 
-				<p>
-					It also showed me the limits of solving one part of a much larger system. As a service
-					provider, I could often see more business problems than I could fix. Now I am moving closer
-					to the work of building and running businesses myself—and documenting what I learn as I go.
-				</p>
+					<p>
+						It also showed me the limits of solving one part of a much larger system. As a service
+						provider, I could often see more business problems than I could fix. Now I am moving
+						closer to the work of building and running businesses myself—and documenting what I
+						learn as I go.
+					</p>
 
-				<h2>What you’ll find here</h2>
-				<ul>
-					<li>First-hand lessons from learning to run a business</li>
-					<li>Notes from building software with AI</li>
-					<li>Practical explanations of tools and workflows</li>
-					<li>Product decisions, tradeoffs, and experiments</li>
-				</ul>
+					<h2>What you’ll find here</h2>
+					<ul>
+						<li>First-hand lessons from learning to run a business</li>
+						<li>Notes from building software with AI</li>
+						<li>Practical explanations of tools and workflows</li>
+						<li>Product decisions, tradeoffs, and experiments</li>
+					</ul>
 
-				<h2>Elsewhere</h2>
-				<p>
-					Follow me on <a href="https://x.com/branyang_ai">X</a> for shorter updates, or visit
-					<a href="https://github.com/branyang">GitHub</a> to see what I am working on.
-				</p>
+					<h2>Elsewhere</h2>
+					<p>
+						Follow me on <a href="https://x.com/branyang_ai">X</a> for shorter updates, or visit
+						<a href="https://github.com/branyang">GitHub</a> to see what I am working on.
+					</p>
+				</div>
 			</article>
 		</main>
 		<Footer />
@@ -63,9 +81,24 @@ const description =
 
 <style>
 	main {
+		width: 900px;
 		padding-block: 5rem;
 	}
-	article {
+	.profile {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
+		align-items: center;
+		gap: 3rem;
+		margin-bottom: 3rem;
+	}
+	.portrait {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 1rem;
+		box-shadow: var(--box-shadow);
+	}
+	.bio {
 		max-width: 42rem;
 	}
 	.eyebrow {
@@ -79,9 +112,6 @@ const description =
 	h1 {
 		margin-bottom: 1.25rem;
 	}
-	.lede {
-		font-size: 1.25rem;
-	}
 	h2 {
 		margin-top: 2.5rem;
 		font-size: 1.75rem;
@@ -92,6 +122,13 @@ const description =
 	@media (max-width: 720px) {
 		main {
 			padding-block: 3rem;
+		}
+		.profile {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+		.portrait {
+			max-width: 22rem;
 		}
 		h1 {
 			font-size: 2.5rem;
