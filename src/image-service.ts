@@ -2,7 +2,6 @@ import type { ExternalImageService } from 'astro';
 
 const service: ExternalImageService = {
 	getURL(options) {
-		console.log('[image-service] getURL called', options.src);
 		const params = new URLSearchParams();
 
 		if (options.width) params.set('width', String(options.width));
