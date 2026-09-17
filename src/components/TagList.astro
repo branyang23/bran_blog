@@ -1,0 +1,58 @@
+---
+import { tagToSlug } from '../utils/tags';
+
+interface Props {
+	tags: string[];
+	centered?: boolean;
+}
+
+const { tags, centered = false } = Astro.props;
+---
+
+{
+	tags.length > 0 && (
+		<ul class:list={['tag-list', { centered }]} aria-label="Post tags">
+			{tags.map((tag) => (
+				<li>
+					<a href={`/tags/${tagToSlug(tag)}/`}>{tag}</a>
+				</li>
+			))}
+		</ul>
+	)
+}
+
+<style>
+	.tag-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		list-style: none;
+		margin: 0.75rem 0 0;
+		padding: 0;
+	}
+
+	.tag-list.centered {
+		justify-content: center;
+	}
+
+	.tag-list li {
+		margin: 0;
+	}
+
+	.tag-list a {
+		display: inline-block;
+		padding: 0.2rem 0.65rem;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 999px;
+		color: rgb(var(--gray-dark));
+		font-size: 0.9rem;
+		line-height: 1.5;
+		text-decoration: none;
+	}
+
+	.tag-list a:hover,
+	.tag-list a:focus-visible {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+</style>

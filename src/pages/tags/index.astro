@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+import { getTagSummaries } from '../../utils/tags';
+
+const tags = getTagSummaries(await getCollection('blog'));
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Topics | ${SITE_TITLE}`}
+			description="Browse Bran Yang's writing by topic."
+		/>
+		<style>
+			main {
+				width: 720px;
+			}
+
+			.page-heading {
+				margin-bottom: 2.5rem;
+				text-align: center;
+			}
+
+			.page-heading p {
+				margin: 0;
+				color: rgb(var(--gray));
+			}
+
+			.tag-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1rem;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			.tag-grid a {
+				display: flex;
+				align-items: baseline;
+				justify-content: space-between;
+				gap: 1rem;
+				padding: 1rem 1.1rem;
+				border: 1px solid rgb(var(--gray-light));
+				border-radius: 10px;
+				color: rgb(var(--gray-dark));
+				text-decoration: none;
+			}
+
+			.tag-grid a:hover,
+			.tag-grid a:focus-visible {
+				border-color: var(--accent);
+				color: var(--accent);
+			}
+
+			.tag-name {
+				font-weight: 700;
+			}
+
+			.tag-count {
+				color: rgb(var(--gray));
+				font-size: 0.9rem;
+				white-space: nowrap;
+			}
+
+			@media (max-width: 560px) {
+				.tag-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<header class="page-heading">
+				<h1>Topics</h1>
+				<p>Recurring themes from the work.</p>
+			</header>
+
+			<ul class="tag-grid">
+				{
+					tags.map((tag) => (
+						<li>
+							<a href={`/tags/${tag.slug}/`}>
+								<span class="tag-name">{tag.name}</span>
+								<span class="tag-count">
+									{tag.count} {tag.count === 1 ? 'post' : 'posts'}
+								</span>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>

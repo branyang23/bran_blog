@@ -2,6 +2,10 @@
 title: 'A place to think in public'
 description: 'Why I am moving from solving problems for clients to building businesses—and why I want to document the journey in public.'
 pubDate: '2026-09-15'
+tags:
+  - Startups
+  - Building with AI
+  - Building in Public
 ---
 
 Most software starts as a private question: *Could this work?* The interesting part comes next—the experiments, tradeoffs, wrong turns, and small decisions that turn an idea into something useful.
